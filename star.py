@@ -13,20 +13,17 @@ def stardelete(input):
 	pos = input.find( "*" )
 	if pos == -1:
 		return input
+	elif pos == 0:
+		c = input[pos+2:]
 	else:
-		a = [ i for i in input[ pos + 2 : ] ]
-		c = ''.join( a )
-	else:
-		a = [ i for i in input[ : pos - 1 ] ]
-		b = [ i for i in input[ pos + 2 : ] ]
-		c = ''.join( a ) + ''.join( b )
+		c = input[:pos-1] + input[pos+2:]
 
+    #causes a recursive call that continues until no stars are found.
 	return stardelete(c)
 
 while True:
-	in_string = str( raw_input( "(quit exits)>" ) )
-	if in_string != "quit":
-		print stardelete(in_string)
-	else:
-		print "Exit sequence."
+	in_string = raw_input( "(quit exits)>" )
+	if in_string == "quit":
+		print "Program terminated."
 		break
+	print stardelete(in_string)
